@@ -4,11 +4,15 @@ def decimal_to_roman(decimal):
     total = ""
     if decimal >= 100:
         centena = decimal // 100
-        total = "C" * centena 
-        decimal = decimal % 100
-    if decimal <= 3:
+        decimal -= centena * 100
+        if centena <= 3:
+            resultado = "C" * centena 
+        elif centena == 4: 
+            resultado += "CD"
+        elif centena <= 8: 
+            resultado += "D" + (centena - 5) * "C"
         total += "I" * decimal 
-    elif decimal == 5:
+    elif decimal >= 5:
         total += "V" * decimal 
     elif decimal == 10:
         total += "X"
